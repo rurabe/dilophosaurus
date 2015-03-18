@@ -1,13 +1,27 @@
+css:
+  textarea{
+    font-family: "Courier New", Courier, monospace
+  }
+
 .row
   .col-md-4
     h3 Tm (#{@tm.length})
     textarea.form-control rows="6"= @tm.join("\n")
+    br
+    a href=download_href(@tm) download="tm.txt"
+      button.btn.btn-primary.col-md-12 Download Tm IPs
   .col-md-4
     h3 Px (#{@px.length})
     textarea.form-control rows="6"= @px.join("\n")
+    br
+    a href=download_href(@px) download="px.txt"
+      button.btn.btn-primary.col-md-12 Download Px IPs
   .col-md-4
     h3 Axs (#{@axs.length})
     textarea.form-control rows="6"= @axs.join("\n")
+    br
+    a href=download_href(@axs) download="axs.txt"
+      button.btn.btn-primary.col-md-12 Download Axs IPs
 br
 .row
   .col-md-12

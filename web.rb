@@ -14,3 +14,9 @@ post '/split' do
   @axs = @cs.flat_map(&:axs).shuffle
   slim :split
 end
+
+helpers do
+  def download_href(data)
+    %Q[data:text/plain;charset=utf-8,#{URI.escape(data.join("\n"), Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))}]
+  end
+end
