@@ -1,9 +1,31 @@
-h2 Split
-
-ul
-  - @data.each_with_index do |d,i|
-    li 
-      |#{d.beginning} to #{d.end} 
-      ul
-        - d.ticketmaster_ips(i).each do |ip|
-          li= ip
+.row
+  .col-md-4
+    h3 Tm (#{@tm.length})
+    textarea.form-control rows="6"= @tm.join("\n")
+  .col-md-4
+    h3 Px (#{@px.length})
+    textarea.form-control rows="6"= @px.join("\n")
+  .col-md-4
+    h3 Axs (#{@axs.length})
+    textarea.form-control rows="6"= @axs.join("\n")
+br
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          td n
+          td Subnet
+          td TM
+          td Px
+          td Axs
+      tbody
+        - @cs.each do |c|
+          - (0..18).each do |i|
+            - axs = c.axs.include?(c.proxy[i])
+            tr class=("warning" if axs)
+              td= i + 1
+              td= i == 0 ? c.subnet.input : nil
+              td= c.ticketmaster[i]
+              td= c.proxy[i]
+              td= axs ? c.proxy[i] : nil 
