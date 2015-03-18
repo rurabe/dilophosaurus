@@ -1,0 +1,9 @@
+h2 Split
+
+ul
+  - @data.each_with_index do |d,i|
+    li 
+      |#{d.beginning} to #{d.end} 
+      ul
+        - d.ticketmaster_ips(i).each do |ip|
+          li= ip
