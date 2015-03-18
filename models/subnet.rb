@@ -45,7 +45,7 @@ class Subnet
   def ticketmaster_ips(i)
     ds(i).map do |d|
       [[@a,@b,@c,d].join("."),mask].join(",")
-    end
+    end.shuffle
   end
 
   private
