@@ -7,7 +7,8 @@ get '/' do
 end
 
 post '/split' do
-  @subnets = params[:ips].split(/\n/).map{|i| Subnet.new(i) }
+  p params[:ips]
+  @subnets = params[:ips].split(/[\n\r]+/).map{|i| Subnet.new(i) }
   @cs = @subnets.flat_map{|s| s.cs }.each_with_index {|c,i| c.generate_ips!(i) }
   @tm = @cs.flat_map(&:ticketmaster).shuffle
   @px = @cs.flat_map(&:proxy).shuffle
